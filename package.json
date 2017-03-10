@@ -1,0 +1,33 @@
+{
+  "name": "rvr",
+  "version": "0.1.0",
+  "description": "Relevance Vector Regression Using \"Fast Marginal Likelihood Maximisation for Sparse Bayesian Models\" (Tipping, Faul; 2006) with some tweaks",
+  "main": "rvr.js",
+  "scripts": {
+    "test": "node test_regression.js"
+  },
+  "keywords": [
+    "relevance",
+    "vector",
+    "machine",
+    "regression",
+    "rvm",
+    "rvr",
+    "machine",
+    "learning",
+    "sparse",
+    "bayesian",
+    "automatic",
+    "relevance",
+    "determination",
+    "ard"
+  ],
+  "dependencies": {
+    "mathjs": "*"
+  },
+  "devDependencies": {
+    "async": "*"
+  },
+  "author": "Thomas Haley",
+  "license": "MIT"
+}
