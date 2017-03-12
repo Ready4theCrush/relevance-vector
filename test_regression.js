@@ -2,7 +2,7 @@ var fs = require('fs');
 var m = require('mathjs');
 var async = require('async');
 
-var RVR = require('./rvr.js');
+var RVM = require('./rvm.js');
 
 
 main(console.log);
@@ -17,27 +17,27 @@ function main(cb) {
 }
 
 function build_model(training, cb) {
-    var rvr = new RVR({
+    var rvm = new RVM({
         kernel: {
             type: "rbf",
             sigma: 0.02,
             normalize: true,
-            bias: true
+            bias: false
         },
-        min_L_factor: .01,
+        min_L_factor: .1,
         verbose: true
     });
-    rvr.train({
+    rvm.train({
         design: training.design.slice(0, training.design.length - 50),
         target: training.target.slice(0, training.design.length - 50)
     });
-    var predictions = rvr.predict({
+    var predictions = rvm.predict({
         design: training.design.slice(training.design.length - 50),
         target: training.target.slice(training.design.length - 50)
     });    
     console.log(predictions);    
-    rvr.describe();
-    console.log("N: "+rvr.N);
+    rvm.describe();
+    console.log("N: "+rvm.N);
     cb();
 }
 
