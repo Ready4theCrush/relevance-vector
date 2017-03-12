@@ -5,7 +5,7 @@ var predict = require('./lib/predict.js');
 function RVR(params) {
         if (params.kernel && params.kernel.type == "rbf" && params.kernel.sigma) {
             this.kernel = params.kernel;
-            console.log(params);
+            // console.log(params);
             if (!params.kernel.hasOwnProperty("bias")) {
                 // console.log(params.kernel.hasOwnProperty("bias"));
                 this.kernel.bias = true;

@@ -20,11 +20,11 @@ function build_model(training, cb) {
     var rvr = new RVR({
         kernel: {
             type: "rbf",
-            sigma: 0.2,
+            sigma: 0.02,
             normalize: true,
             bias: true
         },
-        min_L_factor: .001,
+        min_L_factor: .01,
         verbose: true
     });
     rvr.train({
