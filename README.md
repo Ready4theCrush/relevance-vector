@@ -27,11 +27,11 @@ var params = {
 
 ###Options
 * `kernel.type`: This has to be "rbf" (radial basis function), because that's the only kernel implemented so far.
-* `kernel.sigma`: The radial basis kernel function is exp( - ||basis1 - basis2||^2 / 2*sigma^).
+* `kernel.sigma`: The radial basis kernel function is `exp( - ||basis1 - basis2||^2 / 2*sigma^2)`.
 * `kernel.normalize`: True normalizes basis vectors before they are kernelized.
 * `kernel.bias`: True adds a constant vector of all 1's to the kernel matrix.
-* `min_L_factor: As the model builds, it evaluates the likelihood that adding/deleting/modifying a basis vector in/not in the model will improve the model. This factor specifies how small those likelihoods need to be before the model is converged. A large value (10) would mean the model would converge quickly, and not be very specific. A small value (.001) means the model will keep going until it really doesn't think changing anything will help very much. Because max Likelihood scales ~ N (the number of training vectors), min_L = min_L_factor*N.
-* `verbose`: Shows the model evaluating the modification that yields the maximum likelihood of improvement. Also shows the min_L it needs to be below to converge.
+* `min_L_factor: As the model builds, it evaluates the likelihood that adding/deleting/modifying a basis vector in/not in the model will improve the model. This factor specifies how small those likelihoods need to be before the model is converged. A large value (`10`) would mean the model would converge quickly, and not be very specific. A small value (`.001`) means the model will keep going until it really doesn't think changing anything will help very much.
+* `verbose`: Shows the model evaluating the modification that yields the maximum likelihood of improvement. Also shows the `min_L` it needs to be below to converge.
 
 ###Train
 
@@ -56,14 +56,15 @@ var output = rvm.predict({
 
 Where `output` has properties:
 
-    `predicted`: An array of P predicted values from the provided feature vectors.
-    `variance`: Variance for each prediction. This model assumes a Gaussian distribution for each of the predicted values.
-    `kernel_avg`: Mean of the off-diagonal values in the kernel matrix. Useful for diagnosing if sigma is too big or too small.
+* `predicted`: An array of P predicted values from the provided feature vectors.
+* `variance`: Variance for each prediction. This model assumes a Gaussian distribution for each of the predicted values.
+* `kernel_avg`: Mean of the off-diagonal values in the kernel matrix. Useful for diagnosing if sigma is too big or too small.
 
 **provided only if `target` provided to `rvm.predict()`**
-    `target`: The target values provided for validation without change.
-    `error`: `target - predicted`.
-    `rmse`: The root mean squared error of the predicted values against the validation target values.
+
+* `target`: The target values provided for validation without change.
+* `error`: `target - predicted`.
+* `rmse`: The root mean squared error of the predicted values against the validation target values.
 
 ##How this works
 The relevance vector machine is a sparse Bayesian supervised learning algorithm. "Supervised learning" means that you give the rvm a bunch of example data to train it, then use the model you created to make predictions of new data. "Sparse" means that the model created doesn't include very many vectors. Prediction is very fast. "Bayesian" means this is a probabilistic model - if you give the RVM some data to use for predictions it doesn't respond with just an answer, it responds with a mean and variance of a Gaussian probability distribution. It tells you an answer, and how certain it is.
