@@ -30,7 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "www.funnyca.goof"
+    "url": "https://github.com/Ready4theCrush/relevance-vector"
+  },
+  "bugs": {
+    "url": "https://github.com/Ready4theCrush/relevance-vector/issues"
   },
   "author": "Thomas Haley",
   "license": "MIT"
